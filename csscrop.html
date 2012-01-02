@@ -40,13 +40,19 @@ $(document).ready(function() {
     $('button').click( function () {
         imgurl = $('#source').val();
         $('#chopboard').attr('src', imgurl );
-        $('#chopboard').Jcrop({
-            onChange:   showCoords,
-            onSelect:   showCoords,
-            onRelease:  clearCoords
-        });
+        if ( typeof(api) != 'undefined' ) { 
+            api.destroy() ;
+        } ;
+        setCrop();
     });
-}); 
+});
+function setCrop() {
+    api = $.Jcrop('#chopboard' , {
+        onChange:   showCoords,
+        onSelect:   showCoords,
+        onRelease:  clearCoords
+        });
+};
 function showCoords(c) {
     var html = '<div style="width:' + c.w + 'px;height:' + c.h + 'px;overflow:hidden;" >\n<img src="' + imgurl + '" alt="" style="margin: -' + c.y + 'px 0 0 -' + c.x + 'px;">\n</div>' ;
     $('#css').val(html);
