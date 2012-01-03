@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+ <meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
+ <title>backkey</title>
+ <script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
+ <style>
+body {
+font-family: sans-serif;
+background-color: #8da7cc ;
+}
+textarea {
+width: 100%;
+height: 100%;
+}
+.col pre {
+font-size: 36px;
+margin: 0;
+}
+.col pre b {
+display: none;
+}
+.col pre em {
+color: #2B2B2B;
+font-style: normal;
+font-size: 12px;
+}
+.col pre span {
+display: none;
+}
+div b,
+span b {
+color: black;
+font-weight: normal;
+}
+img  {
+padding: 7px 0 0 4px;
+}
+.col pre {
+width: 115px;
+float: left;
+border: 1px solid #fff;
+margin: 0 4px;
+padding: 0 5px;
+white-space: pre;
+}
+.both {
+clear: both;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('textarea.backkey').focus();
+    var combo = '';
+    $('textarea.backkey').keydown( function (e) {
+        k = e.keyCode
+        if (k == '65' || k == '68' || k == '70' || k == '74' || k == '75' || k == '76' || k == '77' || k == '83') {
+        combo += e.keyCode + ',' ;
+        return false;
+        };
+    }).keyup(combo, function(e) {
+        backkey( combo );
+         if (combo != '' ) {
+            $('textarea.backkey').insertAtCaret(o);
+            combo = '';
+            return false;
+        };
+    });
+    $('button').click( function () {
+        $('pre b, pre em').toggle();
+    });
+});
+function backkey (keystroke) {
+keystroke = keystroke.split(',').sort().join(""); // just to sort ??!
+// a s  d  f     j  k  l  ö
+// 65 83 68 70    74 75 76 77
+
+$('.keystroke').append(keystroke)
+switch (keystroke) {
+// single
+
+// synchron
+ case "7074" : o = "e"
+ break;
+ case "6875" : o = "n"
+ break;
+ case "7683" : o = "i"
+ break;
+ case "68707475" : o = "s"
+ break;
+ case "70747683" : o = "r"
+ break;
+ case "68757683" : o = "a"
+ break;
+ case "687074" : o = "t"
+ break;
+// rest
+ case "6874" : o = "d"
+ break;
+ case "7075" : o = "h"
+ break;
+ case "7583" : o = "u"
+ break;
+ case "687683" : o = "l"
+ break;
+ case "6870747683" : o = "c"
+ break;
+ case "6876" : o = "g"
+ break;
+ case "757683" : o = "m"
+ break;
+ case "687074757683" : o = "o"
+ break;
+ case "70747576" : o = "b"
+ break;
+ case "68707576" : o = "w"
+ break;
+ case "6870747583" : o = "f"
+ break;
+ case "687476" : o = "k"
+ break;
+ case "68747583" : o = "z"
+ break;
+ case "68707483" : o = "p"
+ break;
+ case "6870747576" : o = "v"
+ break;
+ case "74757683" : o = "j"
+ break;
+ case "68747576" : o = "y"
+ break;
+ case "707583" : o = "x"
+ break;
+ case "68707583" : o = "q"
+ break;
+ // no backkeyaccord is pressed
+ // TODO better to return function 
+ case "65" : o = "a"
+ break;
+ case "83" : o = "s"
+ break;
+ case "68" : o = "d"
+ break;
+ case "70" : o = "f"
+ break;
+ case "74" : o = "j"
+ break;
+ case "75" : o = "k"
+ break;
+ case "76" : o = "l"
+ break;
+ case "77" : o = "ö"
+ break;
+ default:
+// o = String.fromCharCode(keystroke); 
+ o = ''
+ break;
+return o ;
+}
+};
+jQuery.fn.insertAtCaret = function (myValue) { // from https://github.com/nkm/jQuery-insertAtCaret
+        return this.each(function(){
+                //IE support
+                if (document.selection) {
+                        this.focus();
+                        sel = document.selection.createRange();
+                        sel.text = myValue;
+                        this.focus();
+                }
+                //MOZILLA/NETSCAPE support
+                else if (this.selectionStart || this.selectionStart == '0') {
+                        var startPos = this.selectionStart;
+                        var endPos = this.selectionEnd;
+                        var scrollTop = this.scrollTop;
+                        this.value = this.value.substring(0, startPos) + myValue + this.value.substring(endPos, this.value.length);
+                        this.focus();
+                        this.selectionStart = startPos + myValue.length;
+                        this.selectionEnd = startPos + myValue.length;
+                        this.scrollTop = scrollTop;
+                } else {
+                        this.value += myValue;
+                        this.focus();
+                }
+        });
+};
+</script>
+</head>
+<body>
+
+<div class="col">
+<!--symmetrien -->
+<pre>
+e <b>⠁⠁</b><em>___F J___</em>
+n <b>⠂⠂</b><em>__D_ _K__</em>
+i <b>⠄⠄</b><em>_S__ __L_</em>
+s <b>⠃⠃</b><em>__DF JK__</em>
+r <b>⠅⠅</b><em>_S_F J_L_</em>
+a <b>⠆⠆</b><em>_SD_ _KL_</em>
+o <b>⠇⠇</b><em>_SDF JKL_</em>
+</pre>
+<pre>
+t <b>⠃⠁</b><em>__DF J___</em><span>Buchstabenbild</span>
+d <b>⠂⠁</b><em>__D_ J___</em><span>Buchstabenbild</span>
+h <b>⠁⠂</b><em>___F _K__</em><span>Buchstabenbild</span>
+u <b>⠄⠂</b><em>_S__ _K__</em><span>der nächste</span>
+l <b>⠆⠄</b><em>_SD_ __L_</em><span>Buchstabenbild</span>
+c <b>⠇⠅</b><em>_SDF J_L_</em><span>Buchstabenbild</span>
+m <b>⠄⠆</b><em>_S__ _KL_</em><span>K_ns_natenpartner zu p</span>
+</pre>
+<pre>
+b <b>⠁⠇</b><em>___F JKL_</em><span>Konsonatenpartner zu p</span>
+g <b>⠂⠄</b><em>__D_ __L_</em><span>Buchstabenbild</span>
+w <b>⠃⠆</b><em>__DF _KL_</em><span>Buchstabenbild Cassi_peia</span>
+f <b>⠇⠃</b><em>_SDF JK__</em><span>Buchstabenbild</span>
+k <b>⠂⠅</b><em>__D_ J_L_</em><span>Konsonatenpartner zu g</span>
+z <b>⠆⠃</b><em>_SD_ JK__</em><span>Buchstabenbild Versatz</span>
+p <b>⠇⠁</b><em>_SDF J___</em><span>Buchstabenbild</span>
+</pre>
+<pre>
+v <b>⠃⠇</b><em>__DF JKL_</em><span>Konsonatenpartner zu f</span>
+j <b>⠄⠇</b><em>_S__ JKL_</em><span>Buchstabenbild</span>
+y <b>⠂⠇</b><em>__D_ JKL_</em><span>Buchstabenbild</span>
+x <b>⠅⠂</b><em>_S_F _K__</em><span>Buchstabenbild</span>
+q <b>⠇⠂</b><em>_SDF _K__</em><span>Buchstabenbild</span>
+</pre>
+</div>
+
+<br class="both" />
+
+<textarea class="backkey"></textarea>
+<button type="button">braile vs asdf</button>
+<br />
+more on <a href="http://umija.org/dev%3Abackkey">umija.org/dev:backkey</a>
+</body>
+</html>
