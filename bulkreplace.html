@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+ <meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
+ <title>bulk replace</title>
+ <style>
+body {
+font-family: sans-serif;
+padding: 0;
+background-color: #8da7cc ;
+}
+fieldset {
+padding: 3px;
+width: 70%;
+height: 100%;
+}
+textarea {
+width: 100%;
+height: 20px;
+border: 0 none;
+}
+textarea.active {
+height: 600px;
+}
+#keyvalue {
+width: 28%;
+float: right;
+}
+#keyvalue textarea {
+height: 670px;
+}
+button {
+margin: 3px;
+}
+ </style>
+ <script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
+ <script src="js/jquery.textarea.js" type="text/javascript"></script>
+ <script type="text/javascript">
+$(document).ready(function() {
+    $('#keyvalue textarea').tabby();
+    $('button').click(function() {
+            var inhalt = $('#i').val();
+            var keyvalue = $('#keyvalue textarea').val();
+            keyvalue = keyvalue.split("\n") ;
+            $(keyvalue).each(function(i,line) {
+                if (line != 0 ) {
+                    var keyandvalue = line.split("\t") ;
+                    inhalt = inhalt.replace( RegExp(keyandvalue[0], 'g') ,keyandvalue[1]);
+                    }
+                });
+            $('#o').val(inhalt);
+            $('#i').removeClass('active');
+            $('#o').addClass('active');
+            $('#o').select();
+    });
+    $('#i, #o').click(function() {
+        $(this).addClass('active');
+    });
+});
+ </script>
+ </head>
+ <body >
+  <fieldset id="keyvalue">
+   <legend>search replace tabseperated</legend>
+   <textarea>
+search	replace
+suchen	ersetzen</textarea>
+  </fieldset>
+  <fieldset>
+   <legend>input</legend>
+   <textarea id="i" class="active">Lorem search LoremsearchLorem Lorem search Lorem search Lorem search Lorem suchen Lorem</textarea>
+  </fieldset>
+  <button>search and replace</button>
+  <fieldset>
+   <legend>output</legend>
+   <textarea id="o"></textarea>
+  </fieldset>
+ </body>
+</html>
