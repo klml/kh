@@ -19,6 +19,7 @@ margin: 0;
 }
 .col pre b {
 display: none;
+text-decoration: overline;
 }
 .col pre em {
 color: #2B2B2B;
@@ -50,109 +51,92 @@ clear: both;
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
-	$('textarea.backkey').focus();
+    $('textarea.backkey').focus();
     var combo = '';
     $('textarea.backkey').keydown( function (e) {
-        k = e.keyCode
-        if (k == '65' || k == '68' || k == '70' || k == '74' || k == '75' || k == '76' || k == '77' || k == '83') {
-        combo += e.keyCode + ',' ;
-        return false;
-        };
-    }).keyup(combo, function(e) {
-        backkey( combo );
-         if (combo != '' ) {
-            $('textarea.backkey').insertAtCaret(o);
-            combo = '';
+        k = e.keyCode ;
+        if (k == '65' || k == '68' || k == '70' || k == '83' || ( k >= '74' && k <= '77' ) ) { // is key a, s, d, f, h-l ?
+            combo += e.keyCode + ',' ;
             return false;
         };
+    }).keyup(combo , function(e) {
+        backkey( combo );
+        k = e.keyCode ;
+        if ( k >= '74' && k <= '77' ) {
+            o = o.toUpperCase();
+        };
+        $('textarea.backkey').insertAtCaret(o);
+        combo = '';
+        texttransform = '';
+        return false;
     });
+
     $('button').click( function () {
         $('pre b, pre em').toggle();
     });
 });
 function backkey (keystroke) {
 keystroke = keystroke.split(',').sort().join(""); // just to sort ??!
-// a s  d  f     j  k  l  ö
+// a  s  d  f     j  k  l  ö
 // 65 83 68 70    74 75 76 77
 
-$('.keystroke').append(keystroke)
 switch (keystroke) {
 // single
 
 // synchron
- case "7074" : o = "e"
- break;
- case "6875" : o = "n"
- break;
- case "7683" : o = "i"
- break;
- case "68707475" : o = "s"
- break;
- case "70747683" : o = "r"
- break;
- case "68757683" : o = "a"
- break;
+ case "7074" : o = "e";
+  break;
+ case "6875" : o = "a"
+  break;
+ case "7683" : o = "o"
+  break;
+ case "68707475" : o = "i"
+  break;
+ case "68757683" : o = "u"
+  break;
+ case "70747683" : o = "n"
+  break;
+ case "687074757683" : o = "s"
+  break;
  case "687074" : o = "t"
- break;
-// rest
- case "6874" : o = "d"
- break;
- case "7075" : o = "h"
- break;
- case "7583" : o = "u"
- break;
+  break;
+ case "7076" : o = "h"
+  break;
+ case "7075" : o = "r"
+  break;
+ case "707475" : o = "d"
+  break;
  case "687683" : o = "l"
- break;
+  break;
  case "6870747683" : o = "c"
- break;
- case "6876" : o = "g"
- break;
- case "757683" : o = "m"
- break;
- case "687074757683" : o = "o"
- break;
- case "70747576" : o = "b"
- break;
+  break;
+ case "7483" : o = "m"
+  break;
  case "68707576" : o = "w"
- break;
+  break;
  case "6870747583" : o = "f"
- break;
- case "687476" : o = "k"
- break;
- case "68747583" : o = "z"
- break;
+  break;
+ case "6876" : o = "g"
+  break;
+ case "68747583" : o = "y"
+  break;
  case "68707483" : o = "p"
- break;
+  break;
+ case "70747576" : o = "b"
+  break;
  case "6870747576" : o = "v"
- break;
- case "74757683" : o = "j"
- break;
- case "68747576" : o = "y"
- break;
- case "707583" : o = "x"
- break;
- case "68707583" : o = "q"
- break;
- // no backkeyaccord is pressed
- // TODO better to return function 
- case "65" : o = "a"
- break;
- case "83" : o = "s"
- break;
- case "68" : o = "d"
- break;
- case "70" : o = "f"
- break;
- case "74" : o = "j"
- break;
- case "75" : o = "k"
- break;
- case "76" : o = "l"
- break;
- case "77" : o = "ö"
+  break;
+ case "7583" : o = "k"
+  break;
+ case "757683" : o = "j"
+  break;
+ case "68747576" : o = "x"
+  break;
+ case "687476" : o = "q"
+  break;
+ case "68707583" : o = "z"
  break;
  default:
-// o = String.fromCharCode(keystroke); 
  o = ''
  break;
 return o ;
@@ -191,39 +175,75 @@ jQuery.fn.insertAtCaret = function (myValue) { // from https://github.com/nkm/jQ
 <!--symmetrien -->
 <pre>
 e <b>⠁⠁</b><em>___F J___</em>
-n <b>⠂⠂</b><em>__D_ _K__</em>
-i <b>⠄⠄</b><em>_S__ __L_</em>
-s <b>⠃⠃</b><em>__DF JK__</em>
-r <b>⠅⠅</b><em>_S_F J_L_</em>
-a <b>⠆⠆</b><em>_SD_ _KL_</em>
-o <b>⠇⠇</b><em>_SDF JKL_</em>
+a <b>⠂⠂</b><em>__D_ _K__</em>
+o <b>⠄⠄</b><em>_S__ __L_</em>
+i <b>⠃⠃</b><em>__DF JK__</em>
+u <b>⠆⠆</b><em>_SD_ _KL_</em>
+n <b>⠅⠅</b><em>_S_F J_L_</em><span>symetric</span>
+s <b>⠇⠇</b><em>_SDF JKL_</em><span>symetric</span>
 </pre>
 <pre>
-t <b>⠃⠁</b><em>__DF J___</em><span>Buchstabenbild</span>
-d <b>⠂⠁</b><em>__D_ J___</em><span>Buchstabenbild</span>
-h <b>⠁⠂</b><em>___F _K__</em><span>Buchstabenbild</span>
-u <b>⠄⠂</b><em>_S__ _K__</em><span>der nächste</span>
-l <b>⠆⠄</b><em>_SD_ __L_</em><span>Buchstabenbild</span>
-c <b>⠇⠅</b><em>_SDF J_L_</em><span>Buchstabenbild</span>
-m <b>⠄⠆</b><em>_S__ _KL_</em><span>K_ns_natenpartner zu p</span>
+h <b>⠁⠄</b><em>___F __L_</em><span>only 2keys</span>
+r <b>⠁⠂</b><em>___F _K__</em><span>only 2keys</span>
+t <b>⠃⠁</b><em>__DF J___</em><span>back on black</span>
+d <b>⠁⠃</b><em>___F JK__</em><span>reflection to t</span>
+l <b>⠆⠄</b><em>_SD_ __L_</em><span>back on black</span>
+c <b>⠇⠅</b><em>_SDF J_L_</em><span>back on black</span>
 </pre>
 <pre>
-b <b>⠁⠇</b><em>___F JKL_</em><span>Konsonatenpartner zu p</span>
-g <b>⠂⠄</b><em>__D_ __L_</em><span>Buchstabenbild</span>
-w <b>⠃⠆</b><em>__DF _KL_</em><span>Buchstabenbild Cassi_peia</span>
-f <b>⠇⠃</b><em>_SDF JK__</em><span>Buchstabenbild</span>
-k <b>⠂⠅</b><em>__D_ J_L_</em><span>Konsonatenpartner zu g</span>
-z <b>⠆⠃</b><em>_SD_ JK__</em><span>Buchstabenbild Versatz</span>
-p <b>⠇⠁</b><em>_SDF J___</em><span>Buchstabenbild</span>
+m <b>⠄⠁</b><em>_S__ J___</em><span>only 2keys, similar to n</span>
+w <b>⠃⠆</b><em>__DF _KL_</em><span>back on black Cassiopeia</span>
+f <b>⠇⠃</b><em>_SDF JK__</em><span>back on black</span>
+g <b>⠂⠄</b><em>__D_ __L_</em><span>only 2keys</span>
+y <b>⠆⠃</b><em>_SD_ JK__</em><span>back on black</span>
+p <b>⠇⠁</b><em>_SDF J___</em><span>back on black</span>
 </pre>
 <pre>
-v <b>⠃⠇</b><em>__DF JKL_</em><span>Konsonatenpartner zu f</span>
-j <b>⠄⠇</b><em>_S__ JKL_</em><span>Buchstabenbild</span>
-y <b>⠂⠇</b><em>__D_ JKL_</em><span>Buchstabenbild</span>
-x <b>⠅⠂</b><em>_S_F _K__</em><span>Buchstabenbild</span>
-q <b>⠇⠂</b><em>_SDF _K__</em><span>Buchstabenbild</span>
+b <b>⠁⠇</b><em>___F JKL_</em><span>back on black</span>
+v <b>⠃⠇</b><em>__DF JKL_</em><span>reflection to f</span>
+k <b>⠄⠂</b><em>_S__ _K__</em><span>reflection to g, only 2keys</span>
+j <b>⠄⠆</b><em>_S__ _KL_</em><span>back on black</span>
+x <b>⠂⠇</b><em>__D_ JKL_</em><span>back on black</span>
+q <b>⠂⠅</b><em>__D_ J_L_</em><span>Konsonatenpartner zu g</span>
+z <b>⠇⠂</b><em>_SDF _K__</em><span>back on black</span>
 </pre>
 </div>
+
+
+<!--
+the rest without S and L (3. finger)
+
+__DF _K__
+__D_ J___
+__D_ JK__
+
+the rest of the _SDFJKL_ section
+
+__DF J_L_
+__DF _K__
+__DF __L_
+__D_ J___
+__D_ JK__
+__D_ _KL_
+___F J_L_
+___F _KL_
+_SDF _KL_
+_SDF __L_
+_SD_ J___
+_SD_ JKL_
+_SD_ J_L_
+_SD_ _K__
+_S_F J___
+_S_F JK__
+_S_F JKL_
+_S_F _K__
+_S_F _KL_
+_S_F __L_
+_S__ JK__
+_S__ JKL_
+_S__ J_L_
+
+-->
 
 <br class="both" />
 
