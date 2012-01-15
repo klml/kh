@@ -69,9 +69,9 @@ function showCoords(c) {
     var marginbottom = $('#chopboard').height() - c.y2 ;
     var marginleft = $('#chopboard').width() - c.x2 ;
     var html = '<div style="width:' + 
-    c.w + 'px;height:' + c.h + 'px;overflow:hidden;" >\n<img src="'
+    c.w + 'px;height:' + c.h + 'px;overflow:hidden;" class="csscrop" >\n<img src="'
      + imgurl + '" alt="" style="margin: -'
-     + c.y + 'px -' + marginleft + 'px -'  + marginbottom + 'px -' + c.x + 'px;" class="csscrop" >\n</div>' ;
+     + c.y + 'px -' + marginleft + 'px -'  + marginbottom + 'px -' + c.x + 'px;" >\n</div>' ;
      
     $('#css').val(html);
     $('#example').html(html);
