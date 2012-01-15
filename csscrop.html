@@ -34,6 +34,9 @@ padding: 3px;
 legend {
 font-size:smaller;
 }
+#selectionsize {
+display: none;
+}
  </style>
  <script type="text/javascript">
 $(document).ready(function() {
@@ -44,6 +47,15 @@ $(document).ready(function() {
             api.destroy() ;
         } ;
         setCrop();
+        $('#selectionsize').show();
+    });
+    $('input[type="radio"]').change(function() {
+        $('#' + $(this).attr('name') ).val( $(this).val() ) ;
+    });
+    $('#x, #y, input[type="radio"]').change(function() {
+        x = $('#x').val();
+        y = $('#y').val();
+        api.setSelect(  [10, 10, x, y ] );
     });
 });
 function setCrop() {
@@ -54,8 +66,15 @@ function setCrop() {
         });
 };
 function showCoords(c) {
-    var html = '<div style="width:' + c.w + 'px;height:' + c.h + 'px;overflow:hidden;" >\n<img src="' + imgurl + '" alt="" style="margin: -' + c.y + 'px 0 0 -' + c.x + 'px;">\n</div>' ;
+    var marginbottom = $('#chopboard').height() - c.y2 ;
+    var marginleft = $('#chopboard').width() - c.x2 ;
+    var html = '<div style="width:' + 
+    c.w + 'px;height:' + c.h + 'px;overflow:hidden;" >\n<img src="'
+     + imgurl + '" alt="" style="margin: -'
+     + c.y + 'px -' + marginleft + 'px -'  + marginbottom + 'px -' + c.x + 'px;" class="csscrop" >\n</div>' ;
+     
     $('#css').val(html);
+    $('#example').html(html);
 };
 function clearCoords() {
     $('#coords input').val('');
@@ -64,6 +83,7 @@ function clearCoords() {
     $('#h').css({color:'inherit'});
     },500);
 };
+
  </script>
  </head>
  <body>
@@ -72,6 +92,19 @@ function clearCoords() {
    <input type="text" id="source" value="http://farm4.staticflickr.com/3419/3378131129_bb2123e148.jpg"/>
    <button>load</button>
   </fieldset>
+  <fieldset id="selectionsize">
+    <legend>selectionsize</legend>
+    <input type="text" id="x" / > x
+    <input type="text" id="y" /><br />
+    <input type="radio" name="x" value="100" />100
+    <input type="radio" name="x" value="200" />200
+    <input type="radio" name="x" value="300" />300 x
+    <input type="radio" name="y" value="100" />100  
+    <input type="radio" name="y" value="200" />200
+    <input type="radio" name="y" value="300" />300
+    
+  </fieldset>
+  
   <br />
   <img src="" id="chopboard" alt="" />
   <br />
@@ -79,6 +112,7 @@ function clearCoords() {
    <legend>img html snippet</legend>
    <textarea id="css" ></textarea>
   </fieldset>
+  <div id="example"></div>
   <span class="warning">This is only a workaround for rare used or low traffic pages, use serverside or manuall cropping for big pictures, massive crops or high traffic sites.</span>
  </body>
 </html>
