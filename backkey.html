@@ -52,36 +52,25 @@ clear: both;
 <script type="text/javascript">
 $(document).ready(function() {
     $('textarea.backkey').focus();
-        var combo = '';
-        var texttransform = '';
+    var combo = '';
     $('textarea.backkey').keydown( function (e) {
         k = e.keyCode ;
-        if (k == '65' || k == '68' || k == '70' || k == '83' ) {
-            texttransform = 'l';
+        if (k == '65' || k == '68' || k == '70' || k == '83' || ( k >= '74' && k <= '77' ) ) { // is key a, s, d, f, h-l ?
             combo += e.keyCode + ',' ;
             return false;
         };
-        if ( k == '74' || k == '75' || k == '76' || k == '77' ) {
-            texttransform = 'r';
-            combo += e.keyCode + ',' ;
-            return false;
-        };
-    }).keyup([combo, texttransform] , function(e) {
+    }).keyup(combo , function(e) {
         backkey( combo );
-        if (texttransform == 'l' ) {
-            $('textarea.backkey').insertAtCaret(o);
-            combo = '';
-            texttransform = '';
-            return false;
-
-        } ;
-        if (texttransform == 'r' ) {
-            $('textarea.backkey').insertAtCaret(u);
-            combo = '';
-            texttransform = '';
-            return false;
-        } ;
+        k = e.keyCode ;
+        if ( k >= '74' && k <= '77' ) {
+            o = o.toUpperCase();
+        };
+        $('textarea.backkey').insertAtCaret(o);
+        combo = '';
+        texttransform = '';
+        return false;
     });
+
     $('button').click( function () {
         $('pre b, pre em').toggle();
     });
@@ -91,15 +80,11 @@ keystroke = keystroke.split(',').sort().join(""); // just to sort ??!
 // a  s  d  f     j  k  l  ö
 // 65 83 68 70    74 75 76 77
 
-
-$('.keystroke').append(keystroke)
 switch (keystroke) {
 // single
 
 // synchron
- case "7074" :
-  o = "e";
-  u = "E";
+ case "7074" : o = "e";
   break;
  case "6875" : o = "a"
   break;
@@ -151,9 +136,7 @@ switch (keystroke) {
   break;
  case "68707583" : o = "z"
  break;
-
  default:
-// o = String.fromCharCode(keystroke); 
  o = ''
  break;
 return o ;
