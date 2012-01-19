@@ -18,16 +18,16 @@ font-size: 36px;
 margin: 0;
 }
 .col pre b {
-display: none;
 text-decoration: overline;
 }
 .col pre em {
+display: none;
 color: #2B2B2B;
 font-style: normal;
 font-size: 12px;
 }
 .col pre span {
-display: none;
+font-size: 12px;
 }
 div b,
 span b {
@@ -38,7 +38,7 @@ img  {
 padding: 7px 0 0 4px;
 }
 .col pre {
-width: 115px;
+width: 200px;
 float: left;
 border: 1px solid #fff;
 margin: 0 4px;
@@ -67,12 +67,11 @@ $(document).ready(function() {
         };
         $('textarea.backkey').insertAtCaret(o);
         combo = '';
-        texttransform = '';
         return false;
     });
 
     $('button').click( function () {
-        $('pre b, pre em').toggle();
+        $('pre b, pre em, pre span').toggle();
     });
 });
 function backkey (keystroke) {
@@ -83,7 +82,7 @@ keystroke = keystroke.split(',').sort().join(""); // just to sort ??!
 switch (keystroke) {
 // single
 
-// synchron
+// symetric
  case "7074" : o = "e";
   break;
  case "6875" : o = "a"
@@ -124,7 +123,7 @@ switch (keystroke) {
   break;
  case "70747576" : o = "b"
   break;
- case "6870747576" : o = "v"
+ case "707583" : o = "v"
   break;
  case "7583" : o = "k"
   break;
@@ -142,45 +141,20 @@ switch (keystroke) {
 return o ;
 }
 };
-jQuery.fn.insertAtCaret = function (myValue) { // from https://github.com/nkm/jQuery-insertAtCaret
-        return this.each(function(){
-                //IE support
-                if (document.selection) {
-                        this.focus();
-                        sel = document.selection.createRange();
-                        sel.text = myValue;
-                        this.focus();
-                }
-                //MOZILLA/NETSCAPE support
-                else if (this.selectionStart || this.selectionStart == '0') {
-                        var startPos = this.selectionStart;
-                        var endPos = this.selectionEnd;
-                        var scrollTop = this.scrollTop;
-                        this.value = this.value.substring(0, startPos) + myValue + this.value.substring(endPos, this.value.length);
-                        this.focus();
-                        this.selectionStart = startPos + myValue.length;
-                        this.selectionEnd = startPos + myValue.length;
-                        this.scrollTop = scrollTop;
-                } else {
-                        this.value += myValue;
-                        this.focus();
-                }
-        });
-};
 </script>
 </head>
 <body>
 
 <div class="col">
-<!--symmetrien -->
+<!-- // symmetric   -->
 <pre>
-e <b>⠁⠁</b><em>___F J___</em>
+e <b>⠁⠁</b><em>___F J___</em><span>symetric</span>
 a <b>⠂⠂</b><em>__D_ _K__</em>
 o <b>⠄⠄</b><em>_S__ __L_</em>
 i <b>⠃⠃</b><em>__DF JK__</em>
 u <b>⠆⠆</b><em>_SD_ _KL_</em>
-n <b>⠅⠅</b><em>_S_F J_L_</em><span>symetric</span>
-s <b>⠇⠇</b><em>_SDF JKL_</em><span>symetric</span>
+n <b>⠅⠅</b><em>_S_F J_L_</em>
+s <b>⠇⠇</b><em>_SDF JKL_</em>
 </pre>
 <pre>
 h <b>⠁⠄</b><em>___F __L_</em><span>only 2keys</span>
@@ -191,20 +165,20 @@ l <b>⠆⠄</b><em>_SD_ __L_</em><span>back on black</span>
 c <b>⠇⠅</b><em>_SDF J_L_</em><span>back on black</span>
 </pre>
 <pre>
-m <b>⠄⠁</b><em>_S__ J___</em><span>only 2keys, similar to n</span>
-w <b>⠃⠆</b><em>__DF _KL_</em><span>back on black Cassiopeia</span>
+m <b>⠄⠁</b><em>_S__ J___</em><span>only 2keys</span>
 f <b>⠇⠃</b><em>_SDF JK__</em><span>back on black</span>
 g <b>⠂⠄</b><em>__D_ __L_</em><span>only 2keys</span>
-y <b>⠆⠃</b><em>_SD_ JK__</em><span>back on black</span>
+k <b>⠄⠂</b><em>_S__ _K__</em><span>reflection to g</span>
 p <b>⠇⠁</b><em>_SDF J___</em><span>back on black</span>
+b <b>⠁⠇</b><em>___F JKL_</em><span>reflection to p</span>
 </pre>
 <pre>
-b <b>⠁⠇</b><em>___F JKL_</em><span>back on black</span>
-v <b>⠃⠇</b><em>__DF JKL_</em><span>reflection to f</span>
-k <b>⠄⠂</b><em>_S__ _K__</em><span>reflection to g, only 2keys</span>
+w <b>⠃⠆</b><em>__DF _KL_</em><span>bob Cassiopeia</span>
 j <b>⠄⠆</b><em>_S__ _KL_</em><span>back on black</span>
+y <b>⠆⠃</b><em>_SD_ JK__</em><span>back on black</span>
+v <b>⠅⠂</b><em>_S_F _K__</em><span>back on black</span>
+q <b>⠂⠅</b><em>__D_ J_L_</em><span>back on black</span>
 x <b>⠂⠇</b><em>__D_ JKL_</em><span>back on black</span>
-q <b>⠂⠅</b><em>__D_ J_L_</em><span>Konsonatenpartner zu g</span>
 z <b>⠇⠂</b><em>_SDF _K__</em><span>back on black</span>
 </pre>
 </div>
@@ -250,6 +224,43 @@ _S__ J_L_
 <textarea class="backkey"></textarea>
 <button type="button">braile vs asdf</button>
 <br />
+<dl>
+    <dt>write chars</dt>
+    <dd>Press the combination with <code>asdf</code> and <code>jklö</code>. The uppermost finger is the index, lies on <code>f</code> on lefthand and <code>j</code> on right, the rest follows downwards<br />
+    e.g <code>⠃⠁</code> is pressed with <code>df</code> and <code>j</code> (btw it is a t)  </dd>
+    <dt>lowerUPERcase</dt>
+    <dd>lower: keyup first with the left hand; upper: with the right (not sure..todo?)</dd>
+</dl>
+
 more on <a href="http://umija.org/dev%3Abackkey">umija.org/dev:backkey</a>
+
+<script>
+// library
+jQuery.fn.insertAtCaret = function (myValue) { // from https://github.com/nkm/jQuery-insertAtCaret
+        return this.each(function(){
+                //IE support
+                if (document.selection) {
+                        this.focus();
+                        sel = document.selection.createRange();
+                        sel.text = myValue;
+                        this.focus();
+                }
+                //MOZILLA/NETSCAPE support
+                else if (this.selectionStart || this.selectionStart == '0') {
+                        var startPos = this.selectionStart;
+                        var endPos = this.selectionEnd;
+                        var scrollTop = this.scrollTop;
+                        this.value = this.value.substring(0, startPos) + myValue + this.value.substring(endPos, this.value.length);
+                        this.focus();
+                        this.selectionStart = startPos + myValue.length;
+                        this.selectionEnd = startPos + myValue.length;
+                        this.scrollTop = scrollTop;
+                } else {
+                        this.value += myValue;
+                        this.focus();
+                }
+        });
+};
+</script>
 </body>
 </html>

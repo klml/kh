@@ -34,6 +34,7 @@ padding: 3px;
 legend {
 font-size:smaller;
 }
+#chopboard ~ small,
 #selectionsize {
 display: none;
 }
@@ -48,14 +49,18 @@ $(document).ready(function() {
         } ;
         setCrop();
         $('#selectionsize').show();
+        $('#chopboard ~ small').show().append( $('#chopboard').height() + ' x '+  $('#chopboard').width() );
+
+        
     });
     $('input[type="radio"]').change(function() {
         $('#' + $(this).attr('name') ).val( $(this).val() ) ;
     });
-    $('#x, #y, input[type="radio"]').change(function() {
+    $('#selectionsize input').change(function() {
         x = $('#x').val();
         y = $('#y').val();
-        api.setSelect(  [10, 10, x, y ] );
+        
+        api.setSelect(  [0, 0, x , y ] );
     });
 });
 function setCrop() {
@@ -71,7 +76,7 @@ function showCoords(c) {
     var html = '<div style="width:' + 
     c.w + 'px;height:' + c.h + 'px;overflow:hidden;" class="csscrop" >\n<img src="'
      + imgurl + '" alt="" style="margin: -'
-     + c.y + 'px -' + marginleft + 'px -'  + marginbottom + 'px -' + c.x + 'px;" >\n</div>' ;
+     + c.y + 'px -' + marginleft + 'px -'  + marginbottom + 'px -' + c.x + 'px;" />\n</div>' ;
      
     $('#css').val(html);
     $('#example').html(html);
@@ -107,6 +112,7 @@ function clearCoords() {
   
   <br />
   <img src="" id="chopboard" alt="" />
+  <small>imagesize: </small>
   <br />
   <fieldset>
    <legend>img html snippet</legend>
