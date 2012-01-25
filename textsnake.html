@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+ <meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
+ <title>textsnake</title>
+ <script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
+ <style>
+body {
+font-family: sans-serif;
+background-color: #8da7cc ;
+font-size:10px;
+}
+textarea {
+width: 650px;
+height: 500px;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('textarea.textsnake').focus();
+    var prev  = '';
+    var backspace  = 0;
+    $('textarea.textsnake').keydown( function (e) {
+        k = e.keyCode ;
+        if ( k >= '37' && k <= '40' && $('input[type="checkbox"]').attr('checked') ) { // ↑→↓←
+            k = String(k);
+            if ( prev == k ) { prev = '' }; // same is same 
+            textsnake ( '' + prev + k );
+            prev = k ;
+            $('textarea').insertAtCaret(o);
+        } 
+        // natural  ↑→↓←
+    }).keyup( function(e) {
+        if ( prev != '' ) { // snake set?
+                    $('textarea.textsnake').insertAtCaret('backspace') ;
+        };
+    });
+});
+function textsnake (keystroke) {
+
+switch (keystroke) {
+ case '37' : o = '─'
+  break;
+ case '39' : o = '─'
+  break;
+ case '38' : o = '│'
+  break;
+ case '40' : o = '│'
+  break;
+ case '3839' : o = '┌'
+  break;
+ case '3837' : o = '┐'
+  break;
+ case '4039' : o = '└'
+  break;
+ case '4037' : o = '┘'
+  break;
+ case '3740' : o = '┌'
+  break;
+ case '3940' : o = '┐'
+  break;
+ case '3738' : o = '└'
+  break;
+ case '3938' : o = '┘'
+  break;
+  default:
+ o = ' '
+ break;
+return o ;
+}
+};
+</script>
+</head>
+<body>
+textsnake:
+<input type="checkbox" checked="checked" ><br />
+<textarea class="textsnake">
+                                                                        e
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+</textarea>
+<br />
+─
+│
+┌
+┐
+└
+┘
+<br />
+┴
+┬
+├
+┤
+┼
+<script>
+// library
+jQuery.fn.insertAtCaret = function (myValue) { // from https://github.com/nkm/jQuery-insertAtCaret
+        return this.each(function(){
+                //IE support
+                if (document.selection) {
+                        this.focus();
+                        sel = document.selection.createRange();
+                        sel.text = myValue;
+                        this.focus();
+                }
+                //MOZILLA/NETSCAPE support
+                else if (this.selectionStart || this.selectionStart == '0') {
+                        var startPos = this.selectionStart;
+                        var endPos = this.selectionEnd;
+                        var scrollTop = this.scrollTop;
+                        if ( myValue == 'backspace' || myValue == 'BACKSPACE' ) {
+                            this.value = this.value.substring(0, startPos - 1 ) + this.value.substring(endPos , this.value.length);
+                            var pospoint = startPos -1 ;
+                        } else {
+                            this.value = this.value.substring(0, startPos) + myValue + this.value.substring(endPos, this.value.length);
+                            var pospoint = startPos + myValue.length;
+                        };
+                        this.focus();
+                        this.selectionStart = pospoint ;
+                        this.selectionEnd = pospoint ;
+                        this.scrollTop = scrollTop;
+                } else {
+                        this.value += myValue;
+                        this.focus();
+                }
+        });
+};
+</script>
+</body>
+</html>
