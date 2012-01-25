@@ -81,9 +81,24 @@ keystroke = keystroke.split(',').sort().join(""); // just to sort ??!
 
 switch (keystroke) {
 // single
-
+ case "65" : o = ""
+  break;
+ case "83" : o = ""
+  break;
+ case "68" : o = ""
+  break;
+ case "70" : o = "" 
+  break;
+ case "74" : o = " "
+  break;
+ case "75" : o = "backspace"
+  break;
+ case "76" : o = " und "
+  break;
+ case "77" : o = "Enter"
+  break;
 // symetric
- case "7074" : o = "e";
+ case "7074" : o = "e"
   break;
  case "6875" : o = "a"
   break;
@@ -228,6 +243,8 @@ _S__ J_L_
     <dt>write chars</dt>
     <dd>Press the combination with <code>asdf</code> and <code>jklö</code>. The uppermost finger is the index, lies on <code>f</code> on lefthand and <code>j</code> on right, the rest follows downwards<br />
     e.g <code>⠃⠁</code> is pressed with <code>df</code> and <code>j</code> (btw it is a t)  </dd>
+    <dt>single</dt>
+    <dd>space: j; backspace: k; 'and' l;</dd>
     <dt>lowerUPERcase</dt>
     <dd>lower: keyup first with the left hand; upper: with the right (not sure..todo?)</dd>
 </dl>
@@ -250,10 +267,16 @@ jQuery.fn.insertAtCaret = function (myValue) { // from https://github.com/nkm/jQ
                         var startPos = this.selectionStart;
                         var endPos = this.selectionEnd;
                         var scrollTop = this.scrollTop;
-                        this.value = this.value.substring(0, startPos) + myValue + this.value.substring(endPos, this.value.length);
+                        if ( myValue == 'backspace' || myValue == 'BACKSPACE' ) {
+                            this.value = this.value.substring(0, startPos - 1 ) + this.value.substring(endPos , this.value.length);
+                            var pospoint = startPos -1 ;
+                        } else {
+                            this.value = this.value.substring(0, startPos) + myValue + this.value.substring(endPos, this.value.length);
+                            var pospoint = startPos + myValue.length;
+                        };
                         this.focus();
-                        this.selectionStart = startPos + myValue.length;
-                        this.selectionEnd = startPos + myValue.length;
+                        this.selectionStart = pospoint ;
+                        this.selectionEnd = pospoint ;
                         this.scrollTop = scrollTop;
                 } else {
                         this.value += myValue;
