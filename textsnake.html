@@ -14,6 +14,9 @@ textarea {
 width: 650px;
 height: 500px;
 }
+.crossroads input {
+width: 20px;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -22,19 +25,15 @@ $(document).ready(function() {
     var backspace  = 0;
     $('textarea.textsnake').keydown( function (e) {
         k = e.keyCode ;
-        if ( k >= '37' && k <= '40' && $('input[type="checkbox"]').attr('checked') ) { // ↑→↓←
+        if ( k >= '37' && k <= '40' && $('input#textsnake').attr('checked') ) { // is ←↑↓→ ?
             k = String(k);
-            if ( prev == k ) { prev = '' }; // same is same 
-            textsnake ( '' + prev + k );
+            if ( prev == k ) prev = '' ; // after same comes same 
+            textsnake ( prev + k );
             prev = k ;
-            $('textarea').insertAtCaret(o);
+            $('textarea').insertAtCaret(o, 'insert'); // second is text-entering mode
         } 
-        // natural  ↑→↓←
-    }).keyup( function(e) {
-        if ( prev != '' ) { // snake set?
-                    $('textarea.textsnake').insertAtCaret('backspace') ;
-        };
     });
+    $('.crossroads input').focus(function() { $(this).select(); } );
 });
 function textsnake (keystroke) {
 
@@ -72,57 +71,62 @@ return o ;
 </script>
 </head>
 <body>
+<p>Use arrows (<code>←↑↓→</code>) to draw lines:</p>
 textsnake:
-<input type="checkbox" checked="checked" ><br />
+<input id="textsnake" type="checkbox" checked="checked" ><br />
 <textarea class="textsnake">
-                                                                        e
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+────────────────────────────────────────────────────────────────────────┘
 </textarea>
-<br />
+<!-- 
 ─
 │
 ┌
 ┐
 └
-┘
+┘-->
 <br />
-┴
-┬
-├
-┤
-┼
+<fieldset class="crossroads">
+cross-roads:
+<input type="text" value="┴" />
+<input type="text" value="┬" />
+<input type="text" value="├" />
+<input type="text" value="┤" />
+<input type="text" value="┼" />
+</fieldset>
 <script>
 // library
-jQuery.fn.insertAtCaret = function (myValue) { // from https://github.com/nkm/jQuery-insertAtCaret
+jQuery.fn.insertAtCaret = function (myValue, textenteringmode) { // from https://github.com/nkm/jQuery-insertAtCaret
         return this.each(function(){
                 //IE support
                 if (document.selection) {
@@ -139,6 +143,10 @@ jQuery.fn.insertAtCaret = function (myValue) { // from https://github.com/nkm/jQ
                         if ( myValue == 'backspace' || myValue == 'BACKSPACE' ) {
                             this.value = this.value.substring(0, startPos - 1 ) + this.value.substring(endPos , this.value.length);
                             var pospoint = startPos -1 ;
+                        } else if (textenteringmode == 'insert' ) {
+                            this.value = this.value.substring(0, startPos ) + myValue + this.value.substring(endPos + 1, this.value.length);
+                            var pospoint = startPos ;
+
                         } else {
                             this.value = this.value.substring(0, startPos) + myValue + this.value.substring(endPos, this.value.length);
                             var pospoint = startPos + myValue.length;
