@@ -30,50 +30,61 @@ $(document).ready(function() {
             if ( prev == k ) prev = '' ; // after same comes same 
             textsnake ( prev + k );
             prev = k ;
-            $('textarea').insertAtCaret(o, 'insert'); // second is text-entering mode
+            if ( $('input#noutf8').attr('checked') ) { 
+                letter = ascii ;
+            } ;
+            $('textarea').insertAtCaret(letter, 'insert'); // second is text-entering mode
         } 
     });
     $('.crossroads input').focus(function() { $(this).select(); } );
 });
 function textsnake (keystroke) {
-
+  ascii = '+' ; // for all none - |
 switch (keystroke) {
- case '37' : o = '─'
+ case '37' :
+  letter = '─' ;
+  ascii = '-' ;
   break;
- case '39' : o = '─'
+ case '39' :
+  letter = '─' ;
+  ascii = '-' ;
   break;
- case '38' : o = '│'
+ case '38' :
+  letter = '│' ;
+  ascii = '|' ;
   break;
- case '40' : o = '│'
+ case '40' :
+  letter = '│' ;
+  ascii = '|' ;
   break;
- case '3839' : o = '┌'
+ case '3839' : letter = '┌'
   break;
- case '3837' : o = '┐'
+ case '3837' : letter = '┐'
   break;
- case '4039' : o = '└'
+ case '4039' : letter = '└'
   break;
- case '4037' : o = '┘'
+ case '4037' : letter = '┘'
   break;
- case '3740' : o = '┌'
+ case '3740' : letter = '┌'
   break;
- case '3940' : o = '┐'
+ case '3940' : letter = '┐'
   break;
- case '3738' : o = '└'
+ case '3738' : letter = '└'
   break;
- case '3938' : o = '┘'
+ case '3938' : letter = '┘'
   break;
-  default:
- o = ' '
+ default:
+  letter = ' '; 
  break;
-return o ;
+return letter ;
 }
 };
 </script>
 </head>
 <body>
 <p>Use arrows (<code>←↑↓→</code>) to draw lines:</p>
-textsnake:
-<input id="textsnake" type="checkbox" checked="checked" ><br />
+textsnake: <input id="textsnake" type="checkbox" checked="checked" />
+no utf8: <input id="noutf8" type="checkbox" /><br />
 <textarea class="textsnake">
                                                                         │
                                                                         │
