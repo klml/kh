@@ -33,8 +33,8 @@ $(document).ready(function() {
             if ( $('input#noutf8').attr('checked') ) { 
                 letter = ascii ;
             } ;
-            $('textarea').insertAtCaret(letter, 'insert'); // second is text-entering mode
-        } 
+            $('textarea.textsnake').insertAtCaret(letter, 'insert'); // second is text-entering mode
+        };
     });
     $('.crossroads input').focus(function() { $(this).select(); } );
 });
@@ -142,7 +142,12 @@ jQuery.fn.insertAtCaret = function (myValue, textenteringmode) { // from https:/
                 //IE support
                 if (document.selection) {
                         this.focus();
-                        sel = document.selection.createRange();
+						if (textenteringmode == 'insert' ) {
+							sel = document.selection.createRange();
+							sel.moveStart('character', -1 );
+						} else {
+							sel = document.selection.createRange();
+						}
                         sel.text = myValue;
                         this.focus();
                 }
