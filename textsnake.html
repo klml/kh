@@ -22,11 +22,11 @@ width: 20px;
 $(document).ready(function() {
     $('textarea.textsnake').focus();
     var prev  = '';
-    var backspace  = 0;
+	var skipone = false ;
     $('textarea.textsnake').keydown( function (e) {
         k = e.keyCode ;
-        if ( k >= '37' && k <= '40' && $('input#textsnake').attr('checked') ) { // is ←↑↓→ ?
-            k = String(k);
+        if ( k >= '37' && k <= '40' && $('input#textsnake').attr('checked') && skipone == false ) { // is ←↑↓→ ?
+			k = String(k);
             if ( prev == k ) prev = '' ; // after same comes same 
             textsnake ( prev + k );
             prev = k ;
@@ -35,8 +35,12 @@ $(document).ready(function() {
             } ;
             $('textarea.textsnake').insertAtCaret(letter, 'insert'); // second is text-entering mode
         };
-    });
-    $('.crossroads input').focus(function() { $(this).select(); } );
+		skipone = false ;
+	});
+    $('.crossroads button').click(function() { 
+	     $('textarea.textsnake').insertAtCaret( $(this).html(), 'insert');
+		 skipone = true;
+	});
 });
 function textsnake (keystroke) {
   ascii = '+' ; // for all none - |
@@ -129,11 +133,11 @@ no utf8: <input id="noutf8" type="checkbox" /><br />
 <br />
 <fieldset class="crossroads">
 cross-roads:
-<input type="text" value="┴" />
-<input type="text" value="┬" />
-<input type="text" value="├" />
-<input type="text" value="┤" />
-<input type="text" value="┼" />
+<button>┴</button>
+<button>┬</button>
+<button>├</button>
+<button>┤</button>
+<button>┼</button>
 </fieldset>
 <script>
 // library
@@ -144,7 +148,7 @@ jQuery.fn.insertAtCaret = function (myValue, textenteringmode) { // from https:/
                         this.focus();
 						if (textenteringmode == 'insert' ) {
 							sel = document.selection.createRange();
-							sel.moveStart('character', -1 );
+							sel.moveStart('character', - 1 );
 						} else {
 							sel = document.selection.createRange();
 						}
