@@ -13,20 +13,36 @@ textarea {
 width: 100%;
 height: 100%;
 }
-.col pre {
+.col {
+border: 1px solid #fff;
+}
+.col ul {
+float: left;
+width: 200px;
+padding: 8px 5px;
+margin: 0 4px;
+}
+.col ul li,
+.col ul b,
+.example {
+font-family: monospace;
 font-size: 36px;
-margin: 0;
+height: 60px;
+list-style-type: none;
 }
-.col pre b {
-text-decoration: overline;
+.col ul b,
+.example {
+border: 1px solid #000;
+margin-right: 5px;
+letter-spacing: -10px;
 }
-.col pre em {
+.col ul em {
 display: none;
 color: #2B2B2B;
 font-style: normal;
 font-size: 12px;
 }
-.col pre span {
+.col ul span {
 font-size: 12px;
 }
 div b,
@@ -36,14 +52,6 @@ font-weight: normal;
 }
 img  {
 padding: 7px 0 0 4px;
-}
-.col pre {
-width: 200px;
-float: left;
-border: 1px solid #fff;
-margin: 0 4px;
-padding: 0 5px;
-white-space: pre;
 }
 .both {
 clear: both;
@@ -71,7 +79,7 @@ $(document).ready(function() {
     });
 
     $('button').click( function () {
-        $('pre b, pre em, pre span').toggle();
+        $('ul b, ul em, ul span').toggle();
     });
 });
 function backkey (keystroke) {
@@ -161,41 +169,50 @@ return o ;
 <body>
 
 <div class="col">
-<!-- // symmetric   -->
-<pre>
-e <b>⠁⠁</b><em>___F J___</em><span>symetric</span>
-a <b>⠂⠂</b><em>__D_ _K__</em>
-o <b>⠄⠄</b><em>_S__ __L_</em>
-i <b>⠃⠃</b><em>__DF JK__</em>
-u <b>⠆⠆</b><em>_SD_ _KL_</em>
-n <b>⠅⠅</b><em>_S_F J_L_</em>
-s <b>⠇⠇</b><em>_SDF JKL_</em>
-</pre>
-<pre>
-h <b>⠁⠄</b><em>___F __L_</em><span>only 2keys</span>
-r <b>⠁⠂</b><em>___F _K__</em><span>only 2keys</span>
-t <b>⠃⠁</b><em>__DF J___</em><span>back on black</span>
-d <b>⠁⠃</b><em>___F JK__</em><span>reflection to t</span>
-l <b>⠆⠄</b><em>_SD_ __L_</em><span>back on black</span>
-c <b>⠇⠅</b><em>_SDF J_L_</em><span>back on black</span>
-</pre>
-<pre>
-m <b>⠄⠁</b><em>_S__ J___</em><span>only 2keys</span>
-f <b>⠇⠃</b><em>_SDF JK__</em><span>back on black</span>
-g <b>⠂⠄</b><em>__D_ __L_</em><span>only 2keys</span>
-k <b>⠄⠂</b><em>_S__ _K__</em><span>reflection to g</span>
-p <b>⠇⠁</b><em>_SDF J___</em><span>back on black</span>
-b <b>⠁⠇</b><em>___F JKL_</em><span>reflection to p</span>
-</pre>
-<pre>
-w <b>⠃⠆</b><em>__DF _KL_</em><span>bob Cassiopeia</span>
-j <b>⠄⠆</b><em>_S__ _KL_</em><span>back on black</span>
-y <b>⠆⠃</b><em>_SD_ JK__</em><span>back on black</span>
-v <b>⠅⠂</b><em>_S_F _K__</em><span>back on black</span>
-q <b>⠂⠅</b><em>__D_ J_L_</em><span>back on black</span>
-x <b>⠂⠇</b><em>__D_ JKL_</em><span>back on black</span>
-z <b>⠇⠂</b><em>_SDF _K__</em><span>back on black</span>
-</pre>
+<ul>
+<li><b> ⠁</b><em>____ J___</em><span><i>space</i></span></li>
+<li><b> ⠂</b><em>____ _K__</em><span><i>backspace</i></span></li>
+<li><b> ⠄</b><em>____ __L_</em><span><i>and</i></span></li>
+<li><b> ⠃</b><em>____ JK__</em></li>
+<li><b> ⠆</b><em>____ _KL_</em></li>
+<li><b> ⠅</b><em>____ J_L_</em></li>
+<li><b> ⠇</b><em>____ JKL_</em></li>
+</ul>
+<ul>
+<li>e <b>⠁⠁</b><em>___F J___</em><span>symetric</span></li>
+<li>a <b>⠂⠂</b><em>__D_ _K__</em></li>
+<li>o <b>⠄⠄</b><em>_S__ __L_</em></li>
+<li>i <b>⠃⠃</b><em>__DF JK__</em></li>
+<li>u <b>⠆⠆</b><em>_SD_ _KL_</em></li>
+<li>n <b>⠅⠅</b><em>_S_F J_L_</em></li>
+<li>s <b>⠇⠇</b><em>_SDF JKL_</em></li>
+</ul>
+<ul>
+<li>h <b>⠁⠄</b><em>___F __L_</em><span>only 2keys</span></li>
+<li>r <b>⠁⠂</b><em>___F _K__</em><span>only 2keys</span></li>
+<li>t <b>⠃⠁</b><em>__DF J___</em><span>back on black</span></li>
+<li>d <b>⠁⠃</b><em>___F JK__</em><span>reflection to t</span></li>
+<li>l <b>⠆⠄</b><em>_SD_ __L_</em><span>back on black</span></li>
+<li>c <b>⠇⠅</b><em>_SDF J_L_</em><span>back on black</span></li>
+</ul>
+<ul>
+<li>m <b>⠄⠁</b><em>_S__ J___</em><span>only 2keys</span></li>
+<li>f <b>⠇⠃</b><em>_SDF JK__</em><span>back on black</span></li>
+<li>g <b>⠂⠄</b><em>__D_ __L_</em><span>only 2keys</span></li>
+<li>k <b>⠄⠂</b><em>_S__ _K__</em><span>reflection to g</span></li>
+<li>p <b>⠇⠁</b><em>_SDF J___</em><span>back on black</span></li>
+<li>b <b>⠁⠇</b><em>___F JKL_</em><span>reflection to p</span></li>
+</ul>
+<ul>
+<li>w <b>⠃⠆</b><em>__DF _KL_</em><span>bob Cassiopeia</span></li>
+<li>j <b>⠄⠆</b><em>_S__ _KL_</em><span>back on black</span></li>
+<li>y <b>⠆⠃</b><em>_SD_ JK__</em><span>back on black</span></li>
+<li>v <b>⠅⠂</b><em>_S_F _K__</em><span>back on black</span></li>
+<li>q <b>⠂⠅</b><em>__D_ J_L_</em><span>back on black</span></li>
+<li>x <b>⠂⠇</b><em>__D_ JKL_</em><span>back on black</span></li>
+<li>z <b>⠇⠂</b><em>_SDF _K__</em><span>back on black</span></li>
+</ul>
+<br class="both" />
 </div>
 
 
@@ -243,11 +260,15 @@ _S__ J_L_
     <dt>write chars</dt>
     <dd>Press the combination with <code>asdf</code> and <code>jklö</code>. The uppermost finger is the index, lies on <code>f</code> on lefthand and <code>j</code> on right, the rest follows downwards<br />
     e.g <code>⠃⠁</code> is pressed with <code>df</code> and <code>j</code> (btw it is a t)  </dd>
-    <dt>single</dt>
-    <dd>space: j; backspace: k; 'and' l;</dd>
-    <dt>lowerUPERcase</dt>
+    <dt>lowerUPPERcase</dt>
     <dd>lower: keyup first with the left hand; upper: with the right (not sure..todo?)</dd>
 </dl>
+
+<p>Example:
+
+<b class="example">⡇⡇</b>
+</p>
+
 
 more on <a href="http://umija.org/dev%3Abackkey">umija.org/dev:backkey</a>
 
