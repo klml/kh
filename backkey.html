@@ -72,7 +72,7 @@ $(document).ready(function() {
     }).keyup(combo , function(e) {
         backkey( combo );
         k = e.keyCode ;
-        if ( k >= '74' && k <= '77' ) {
+        if ( $('#uppercase').attr('checked') && k >= '74' && k <= '77' ) {
             o = o.toUpperCase();
         };
         $('textarea.backkey').insertAtCaret(o);
@@ -263,7 +263,7 @@ _S__ J_L_
     <dd>Press the combination with <code>asdf</code> and <code>jklö</code>. The uppermost finger is the index, lies on <code>f</code> on lefthand and <code>j</code> on right, the rest follows downwards<br />
     e.g <code>⠃⠁</code> is pressed with <code>df</code> and <code>j</code> (btw it is a t)  </dd>
     <dt>lowerUPPERcase</dt>
-    <dd>lower: keyup first with the left hand; upper: with the right (not sure..todo?)</dd>
+    <dd><input type="checkbox" name="uppercase" id="uppercase" /> lower: keyup first with the left hand; upper: with the right (not sure..todo?)</dd>
 </dl>
 
 <p>Example:
