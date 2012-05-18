@@ -4,7 +4,6 @@
  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
  <title>backkey</title>
  <script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
- <script src="http://localhost/jquery-1.6.1.min.js" type="text/javascript"></script>
  <style>
 body {
 font-family: sans-serif;
@@ -18,10 +17,8 @@ height: 300px;
 border: 1px solid #fff;
 }
 .col ul {
-float: left;
-width: 150px;
 padding: 8px 5px;
-margin: 0 4px;
+
 }
 .col ul li,
 .col ul b,
@@ -30,6 +27,7 @@ font-family: monospace;
 font-size: 25px;
 height: 33px;
 list-style-type: none;
+display: inline;
 }
 .col ul b,
 .example {
@@ -46,6 +44,7 @@ font-size: 12px;
 }
 .col ul span {
 font-size: 12px;
+display: none;
 }
 div b,
 span b {
@@ -57,6 +56,12 @@ padding: 7px 0 0 4px;
 }
 .both {
 clear: both;
+}
+.asdf {
+margin-left: 20px;
+}
+.yxcv {
+margin-left: 40px;
 }
 </style>
 <script type="text/javascript">
@@ -171,52 +176,55 @@ return o ;
 <body>
 
 <div class="col">
-<ul>
-<li><b> ⠁</b><em>____ J___</em><span><i>space</i></span></li>
-<li><b> ⠂</b><em>____ _K__</em><span><i>backspace</i></span></li>
-<li><b> ⠄</b><em>____ __L_</em><span><i>and</i></span></li>
-<li><b> ⠃</b><em>____ JK__</em></li>
-<li><b> ⠆</b><em>____ _KL_</em></li>
-<li><b> ⠅</b><em>____ J_L_</em></li>
-<li><b> ⠇</b><em>____ JKL_</em></li>
-</ul>
-<ul>
-<li>e <b>⠁⠁</b><em>___F J___</em><span>symetric</span></li>
-<li>a <b>⠂⠂</b><em>__D_ _K__</em></li>
-<li>o <b>⠄⠄</b><em>_S__ __L_</em></li>
-<li>i <b>⠃⠃</b><em>__DF JK__</em></li>
-<li>u <b>⠆⠆</b><em>_SD_ _KL_</em></li>
-<li>n <b>⠅⠅</b><em>_S_F J_L_</em></li>
-<li>s <b>⠇⠇</b><em>_SDF JKL_</em></li>
-</ul>
-<ul>
-<li>h <b>⠁⠄</b><em>___F __L_</em><span>2 keys</span></li>
-<li>r <b>⠁⠂</b><em>___F _K__</em><span>2 keys</span></li>
-<li>t <b>⠃⠁</b><em>__DF J___</em><span>back on black</span></li>
-<li>d <b>⠁⠃</b><em>___F JK__</em><span>mirror to t</span></li>
-<li>l <b>⠆⠄</b><em>_SD_ __L_</em><span>back on black</span></li>
-<li>c <b>⠇⠅</b><em>_SDF J_L_</em><span>back on black</span></li>
-</ul>
-<ul>
-<li>m <b>⠄⠁</b><em>_S__ J___</em><span>2 keys</span></li>
-<li>f <b>⠇⠃</b><em>_SDF JK__</em><span>back on black</span></li>
-<li>g <b>⠂⠄</b><em>__D_ __L_</em><span>2 keys</span></li>
-<li>k <b>⠄⠂</b><em>_S__ _K__</em><span>mirror to g</span></li>
-<li>p <b>⠇⠁</b><em>_SDF J___</em><span>back on black</span></li>
-<li>b <b>⠁⠇</b><em>___F JKL_</em><span>mirror to p</span></li>
-</ul>
-<ul>
-<li>w <b>⠃⠆</b><em>__DF _KL_</em><span>bob Cassiopeia</span></li>
-<li>j <b>⠄⠆</b><em>_S__ _KL_</em><span>back on black</span></li>
-<li>y <b>⠆⠃</b><em>_SD_ JK__</em><span>back on black</span></li>
-<li>v <b>⠅⠂</b><em>_S_F _K__</em><span>back on black</span></li>
-<li>q <b>⠂⠅</b><em>__D_ J_L_</em><span>back on black</span></li>
-<li>x <b>⠂⠇</b><em>__D_ JKL_</em><span>back on black</span></li>
-<li>z <b>⠇⠂</b><em>_SDF _K__</em><span>back on black</span></li>
-</ul>
-<br class="both" />
-</div>
 
+
+<ul class="qwer">
+	<li>q <b>⠂⠅</b><em>__D_ J_L_</em><span>back on black</span></li>
+	<li>w <b>⠃⠆</b><em>__DF _KL_</em><span>bob Cassiopeia</span></li>
+	<li>e <b>⠁⠁</b><em>___F J___</em><span>symetric</span></li>
+	<li>r <b>⠁⠂</b><em>___F _K__</em><span>2 keys</span></li>
+	<li>t <b>⠃⠁</b><em>__DF J___</em><span>back on black</span></li>
+	<li>z <b>⠇⠂</b><em>_SDF _K__</em><span>back on black</span></li>
+	<li>u <b>⠆⠆</b><em>_SD_ _KL_</em></li>
+	<li>i <b>⠃⠃</b><em>__DF JK__</em></li>
+	<li>o <b>⠄⠄</b><em>_S__ __L_</em></li>
+	<li>p <b>⠇⠁</b><em>_SDF J___</em><span>back on black</span></li>
+</ul>
+<ul class="asdf">
+	<li>a <b>⠂⠂</b><em>__D_ _K__</em></li>
+	<li>s <b>⠇⠇</b><em>_SDF JKL_</em></li>
+	<li>d <b>⠁⠃</b><em>___F JK__</em><span>mirror to t</span></li>
+	<li>f <b>⠇⠃</b><em>_SDF JK__</em><span>back on black</span></li>
+	<li>g <b>⠂⠄</b><em>__D_ __L_</em><span>2 keys</span></li>
+	<li>h <b>⠁⠄</b><em>___F __L_</em><span>2 keys</span></li>
+	<li>j <b>⠄⠆</b><em>_S__ _KL_</em><span>back on black</span></li>
+	<li>k <b>⠄⠂</b><em>_S__ _K__</em><span>mirror to g</span></li>
+	<li>l <b>⠆⠄</b><em>_SD_ __L_</em><span>back on black</span></li>
+</ul>
+<ul class="yxcv">
+	<li>y <b>⠆⠃</b><em>_SD_ JK__</em><span>back on black</span></li>
+	<li>x <b>⠂⠇</b><em>__D_ JKL_</em><span>back on black</span></li>
+	<li>c <b>⠇⠅</b><em>_SDF J_L_</em><span>back on black</span></li>
+	<li>v <b>⠅⠂</b><em>_S_F _K__</em><span>back on black</span></li>
+	<li>b <b>⠁⠇</b><em>___F JKL_</em><span>mirror to p</span></li>
+	<li>n <b>⠅⠅</b><em>_S_F J_L_</em></li>
+	<li>m <b>⠄⠁</b><em>_S__ J___</em><span>2 keys</span></li>
+</ul>
+<ul>
+<li style="width: 350px;"> <b style="width: 350px;"> ⠁</b><em>____ J___</em><span><i>space</i></span></li>
+</ul>
+
+<ul>
+
+	<li>⇦<b> ⠂</b><em>____ _K__</em><span><i></i></span></li>
+	<li><b> ⠄</b><em>____ __L_</em><span><i>and</i></span></li>
+	<li><b> ⠃</b><em>____ JK__</em></li>
+	<li><b> ⠆</b><em>____ _KL_</em></li>
+	<li><b> ⠅</b><em>____ J_L_</em></li>
+	<li><b> ⠇</b><em>____ JKL_</em></li>
+</ul>
+
+</div>
 
 <!--
 the rest without S and L (3. finger)
