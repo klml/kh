@@ -11,6 +11,7 @@ aka little helper
 ## others
 
 * [de.selfhtml.org](http://de.selfhtml.org/helferlein/index.htm)  Farbauswähler, Dezimal/Hexadezimal-Umrechner, Punkt/Inch/Millimeter-Umrechner, Unix-Dateirechte-Setzer (chmod)
+* [RegExr](http://gskinner.com/RegExr/) RegEx live
 * [keyword_combination tool](http://midgets.dsquare.de/keyword_combination.php)
 
  
