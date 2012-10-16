@@ -11,7 +11,8 @@ aka little helper
 ## others
 
 * [de.selfhtml.org](http://de.selfhtml.org/helferlein/index.htm)  Farbauswähler, Dezimal/Hexadezimal-Umrechner, Punkt/Inch/Millimeter-Umrechner, Unix-Dateirechte-Setzer (chmod)
-* [RegExr](http://gskinner.com/RegExr/) RegEx live
+* [RegExr](http://gskinner.com/RegExr/) create and test RegEx live
+* [Mr. Data Converter](http://www.shancarter.com/data_converter/) convert your CSV (e.g. Excel) data into HTML, JSON and XML (waiting for markdown;)
 * [keyword_combination tool](http://midgets.dsquare.de/keyword_combination.php)
 
  
