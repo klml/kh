@@ -25,11 +25,11 @@ width: 20px;
 $(document).ready(function() {
     $('textarea.textsnake').focus();
     var prev  = '';
-	var skipone = false ;
+    var skipone = false ;
     $('textarea.textsnake').keydown( function (e) {
         k = e.keyCode ;
         if ( k >= '37' && k <= '40' && $('input#textsnake').attr('checked') && skipone == false ) { // is ←↑↓→ ?
-			k = String(k);
+            k = String(k);
             if ( prev == k ) prev = '' ; // after same comes same 
             textsnake ( prev + k );
             prev = k ;
@@ -38,12 +38,12 @@ $(document).ready(function() {
             } ;
             $('textarea.textsnake').insertAtCaret(letter, 'insert'); // second is text-entering mode
         };
-		skipone = false ;
-	});
+        skipone = false ;
+    });
     $('.crossroads button').click(function() { 
-	     $('textarea.textsnake').insertAtCaret( $(this).html(), 'insert');
-		 skipone = true;
-	});
+         $('textarea.textsnake').insertAtCaret( $(this).html(), 'insert');
+         skipone = true;
+    });
 });
 function textsnake (keystroke) {
   ascii = '+' ; // for all none - |
@@ -160,12 +160,12 @@ jQuery.fn.insertAtCaret = function (myValue, textenteringmode) { // from https:/
                 //IE support
                 if (document.selection) {
                         this.focus();
-						if (textenteringmode == 'insert' ) {
-							sel = document.selection.createRange();
-							sel.moveStart('character', - 1 );
-						} else {
-							sel = document.selection.createRange();
-						}
+                        if (textenteringmode == 'insert' ) {
+                            sel = document.selection.createRange();
+                            sel.moveStart('character', - 1 );
+                        } else {
+                            sel = document.selection.createRange();
+                        }
                         sel.text = myValue;
                         this.focus();
                 }
